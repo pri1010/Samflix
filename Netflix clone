@@ -1,0 +1,61 @@
+# 🚀 **Netflix Clone Deployment on Cloud Using Jenkins** 🎬☁️
+
+Welcome to my DevSecOps project where I deployed a Netflix clone on AWS using Jenkins for CI/CD! Here’s a breakdown of the phases and steps involved:
+
+## 🔧 **Phase 1: Initial Setup and Deployment**
+1. **EC2 Launch:** 
+   - Provisioned an EC2 instance with Ubuntu 22.04 🖥️
+   - Connected to the instance via SSH 🔐
+2. **Code Clone:**
+   - Cloned the code repository from GitHub: 
+     ```bash
+     git clone https://github.com/N4si/DevSecOps-Project.git
+     ```
+3. **Docker Setup:**
+   - Installed Docker:
+     ```bash
+     sudo apt-get update
+     sudo apt-get install docker.io -y
+     sudo usermod -aG docker $USER
+     newgrp docker
+     sudo chmod 777 /var/run/docker.sock
+     ```
+   - Built and ran the app in a Docker container:
+     ```bash
+     docker build -t netflix .
+     docker run -d --name netflix -p 8081:80 netflix:latest
+     ```
+   - Rebuilt the Docker image with the TMDB API key for customization 🔑
+
+## 🔒 **Phase 2: Security**
+1. **SonarQube & Trivy:**
+   - Installed SonarQube and Trivy for code quality and vulnerability scanning 🔍
+   - Integrated SonarQube in Jenkins for continuous analysis 🛡️
+   - Added Trivy scans for Docker images and filesystems 🚨
+
+## 🔄 **Phase 3: CI/CD Setup**
+1. **Jenkins Installation:**
+   - Installed Jenkins on EC2, added essential plugins, and configured the CI/CD pipeline 🔄
+   - Automated builds, tests, and deployments, including Docker builds and pushes 🛠️
+   - Integrated OWASP Dependency-Check and Trivy for security checks 🔧
+
+## 📈 **Phase 4: Monitoring**
+1. **Prometheus & Grafana:**
+   - Set up Prometheus and Grafana for monitoring and visualization 📊
+   - Configured Prometheus to scrape metrics and used Grafana to create dashboards 📉
+
+## 🔔 **Phase 5: Notifications**
+1. **Notification Services:**
+   - Implemented email notifications in Jenkins to keep everyone updated 📧
+
+## ☸️ **Phase 6: Kubernetes**
+1. **Kubernetes Setup:**
+   - Created a Kubernetes cluster with node groups 🌐
+   - Installed Node Exporter using Helm and integrated with Prometheus 📦
+   - Deployed the app using ArgoCD for scalable and manageable deployments 🚀
+
+## 🧹 **Phase 7: Cleanup**
+1. **EC2 Termination:**
+   - Cleaned up by terminating unused AWS EC2 instances 🗑️
+
+This project combined Docker, Jenkins, SonarQube, Prometheus, and Kubernetes into a comprehensive deployment pipeline. Feel free to dive into the code and configurations! Let’s connect if you have any questions or want to discuss DevSecOps practices.
